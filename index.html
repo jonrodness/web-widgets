@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"> 
+		<title>Widget Tester</title>
+		<script type="text/javascript" src="./formWidget.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+		<link type="text/css" href="./formWidget.css" rel="stylesheet">	
+	</head>
+
+	<body>
+		<p id="test">test</p>
+		<div id="root">
+
+			<div class="form-widget-container">
+				<form name="message-form">
+					<div class="form-body">
+						<label for="contacts">Contacts</label>
+						<br/>
+						<input type="text" id="contacts" class="body-input" >
+						<br/>				
+
+						<label for="subject">Subject</label>
+						<br/>
+						<input type="text" id="subject" class="body-input" placeholder="You can add a subject">
+						<br/>
+						
+						<label for="message">Message</label>
+						<br/>
+						<input type="text" id="message" class="body-input" placeholder="Leave your message here">
+						<br/>
+					</div>
+
+					<div class="form-footer">
+						<input type="checkbox" id="save">
+						<label for="save">Save a copy</label>
+
+						<input type="button" id="send-btn" class="btn" value="Send Mail">
+						<!-- clear floats -->
+						<div class="clear"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
