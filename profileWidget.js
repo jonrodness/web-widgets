@@ -3,7 +3,8 @@
 	var profile = {
 		firstName: "Courtney",
 		lastName: "Timmons",
-		followers: 15323
+		followers: 15323,
+		picUrl: "profile.jpg"
 	};
 
 	window.onload = main;
@@ -21,10 +22,45 @@
 		var followersText = document.createTextNode(profile.followers);
 		followersElement.insertBefore(followersText, followersElement.children[0]);
 
+		var profilePicContainer = document.getElementById("profile-pic-container");
+		profilePicContainer.style.backgroundImage = "url('" + profile.picUrl + "')";
+
 
 	}
 
+	function selectDimension(e) {
+		
+		// Remove "selected" class from all list items
+		var listItems = e.target.parentElement.children;
+		
+		var i;
+		for (i = 0; i < listItems.length; i++) {
+			var classNames = listItems[i].className;
+			var classList = classNames.split(" ");
+			listItems[i].className = "";
+
+			var j;
+			// Add non-"selected" classes back
+			for (j = 0; j < classList.length; j++) {
+				if (classList[i] !== "selected") {
+					listItems[i].className += classList[i];
+				}
+			}
+		}
+
+		e.target.className += " selected";
+	}
+
+
+
 	function main() {
-		initProfile();	
-	}	
+		initProfile();
+		setup();	
+	}
+
+	function setup() {
+		var dimensionList = document.getElementById("dimension-list");
+		dimensionList.addEventListener("click", selectDimension);	
+	}
+
 })();

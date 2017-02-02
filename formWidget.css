@@ -90,6 +90,7 @@ body, #root {
 	border: none;
 	position: relative;
 	overflow: hidden;
+	cursor: pointer;
 
 	-webkit-transition: background-color 0.3s, box-shadow 0.3s;
 	-moz-transition: background-color 0.3s, box-shadow 0.3s;
