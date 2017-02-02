@@ -8,27 +8,15 @@
 		{
 			email:"Andy@me.com",
 			category: "work"
-		},
-				{
-			email:"Andy@me.com",
-			category: "work"
-		},
-				{
-			email:"Andy@me.com",
-			category: "work"
 		}
 	];
 
-	window.onload = main;
-
-	var styleSheet = document.createElement("link");
-	styleSheet.rel = "stylesheet";
-	styleSheet.type = "css/text";
-	styleSheet.href = "formWidget.css";
-	
-	var head = document.getElementsByTagName("head")[0];
-	head.appendChild(styleSheet);
-
+	/**
+	 * Inserts a contact block into the contacts-box
+	 *
+	 * @param {object} contact A contact object.
+	 * @return null
+	 */
 	function insertContact(contact) {
 		var contactsBox = document.getElementById("selected-contacts");		
 		var contactElement = document.createElement("div");
@@ -41,23 +29,23 @@
 		contactsBox.insertBefore(contactElement, contactsBox.childNodes[0]);		
 	}
 
+	/**
+	 * Initializes all contacts
+	 *
+	 * @return null
+	 */
 	function initContacts() {
 		contacts.forEach(function(contact) {
 			insertContact(contact);
 		});
 	}
 
-	function main() {
-
-		var root = document.getElementById("root");
-		root.appendChild(document.createElement("div"));
-		setup();
-
-		initContacts();
-		
-	}
-
-	function addContact() {
+	/**
+	 * Event handler for clicking Add Button
+	 *
+	 * @return null
+	 */
+	function onAddContact() {
 		var recipientInput = document.getElementById("recipient-input");
 		
 		if (recipientInput.value) {
@@ -72,7 +60,12 @@
 		}
 	}		
 
-	function toggleContactsBoxState() {
+	/**
+	 * Event handler for clicking Add Recipient Button
+	 *
+	 * @return null
+	 */
+	function onToggleContactsBoxState() {
 		var contactsBox = document.getElementById("contacts-box");
 		var classList = contactsBox.classList;
 		
@@ -84,13 +77,41 @@
 		}
 	}
 
-	// Setup listeners
+	/**
+	 * Registers event handlers
+	 *
+	 * @return null
+	 */
 	function setup() {
 		var addContactBtn = document.getElementById("add-recipient-btn");
-		addContactBtn.addEventListener("click", toggleContactsBoxState);
+		if (addContactBtn.addEventListener) {
+			addContactBtn.addEventListener("click", onToggleContactsBoxState);					
+		} else {
+			addContactBtn.attachEvent("click", onToggleContactsBoxState);				
+		}		
 
 		var addBtn = document.getElementById("add-btn");
-		addBtn.addEventListener("click", addContact);		
+		if (addBtn.addEventListener) {
+			addBtn.addEventListener("click", onAddContact);					
+		} else {
+			addBtn.attachEvent("click", onAddContact);				
+		}		
 	}
-	
+
+	/**
+	 * Main function called upon document load event
+	 *
+	 * @return null
+	 */
+	function main() {
+		setup();
+		initContacts();
+	}	
+
+	if (window.addEventListener) {
+		window.addEventListener("load", main);		
+	} else {
+		window.attachEvent("load", main);
+	}
+
 })();

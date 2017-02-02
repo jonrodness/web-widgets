@@ -7,9 +7,22 @@
 		picUrl: "profile.jpg"
 	};
 
-	window.onload = main;
-
+	/**
+	 * Retrieves and inserts profile data.
+	 *
+	 * @return null
+	 */
 	function initProfile() {
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("demo").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("GET", "ajax_info.txt", true);
+		xhttp.send();
+
 		var firstNameElement = document.getElementById("first-name");		
 		var firstNameText = document.createTextNode(profile.firstName);
 		firstNameElement.appendChild(firstNameText);
@@ -19,19 +32,23 @@
 		lastNameElement.appendChild(lastNameText);
 
 		var followersElement = document.getElementById("followers");
-		var followersText = document.createTextNode(profile.followers);
+		var followersText = document.createTextNode(profile.followers.toLocaleString('en'));
 		followersElement.insertBefore(followersText, followersElement.children[0]);
 
 		var profilePicContainer = document.getElementById("profile-pic-container");
 		profilePicContainer.style.backgroundImage = "url('" + profile.picUrl + "')";
-
-
 	}
 
-	function selectDimension(e) {
-		
+	/**
+	 * Event handler for clicking dimension.
+	 *
+	 * @param {object} e The fired event.
+	 * @return null
+	 */
+	function onSelectDimension(e) {
 		// Remove "selected" class from all list items
 		var listItems = e.target.parentElement.children;
+		var targetSelected;
 		
 		var i;
 		for (i = 0; i < listItems.length; i++) {
@@ -39,28 +56,56 @@
 			var classList = classNames.split(" ");
 			listItems[i].className = "";
 
+			// Add all other classes back to element
 			var j;
-			// Add non-"selected" classes back
 			for (j = 0; j < classList.length; j++) {
-				if (classList[i] !== "selected") {
-					listItems[i].className += classList[i];
+				if (classList[j] !== "selected") {
+					if (j > 0) {
+						listItems[i].className += " ";
+					}
+					listItems[i].className += classList[j];
+				} else if (listItems[i] === e.target) {
+					var targetSelected = true;
 				}
 			}
 		}
 
-		e.target.className += " selected";
+		if (!targetSelected) {
+			e.target.className += " selected";			
+		}
 	}
 
+	/**
+	 * Registers event handlers
+	 *
+	 * @return null
+	 */
+	function setup() {
+		var dimensionList = document.getElementsByClassName("profile-dimension");
+		var i;
+		for (i = 0; i < dimensionList.length; i++) {
+			if (dimensionList[i].addEventListener) {
+				dimensionList[i].addEventListener("click", onSelectDimension);					
+			} else {
+				dimensionList[i].attachEvent("click", onSelectDimension);				
+			}
+		}
+	}
 
-
+	/**
+	 * Main function called upon document load event
+	 *
+	 * @return null
+	 */
 	function main() {
 		initProfile();
 		setup();	
 	}
 
-	function setup() {
-		var dimensionList = document.getElementById("dimension-list");
-		dimensionList.addEventListener("click", selectDimension);	
+	if (window.addEventListener) {
+		window.addEventListener("load", main);		
+	} else {
+		window.attachEvent("load", main);
 	}
 
 })();
