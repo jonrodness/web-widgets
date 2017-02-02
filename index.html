@@ -3,44 +3,103 @@
 	<head>
 		<meta charset="UTF-8"> 
 		<title>Widget Tester</title>
-		<script type="text/javascript" src="./formWidget.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-		<link type="text/css" href="./formWidget.css" rel="stylesheet">	
+		<script type="text/javascript" src="./formWidget.js"></script>
+
+		<link type="text/css" href="./formWidget.css" rel="stylesheet">
+		<link type="text/css" href="./profileWidget.css" rel="stylesheet">	
 	</head>
 
 	<body>
-		<p id="test">test</p>
 		<div id="root">
 
 			<div class="form-widget-container">
 				<form name="message-form">
 					<div class="form-body">
-						<label for="contacts">Contacts</label>
+
+						<label>Contacts</label>
 						<br/>
-						<input type="text" id="contacts" class="body-input" >
-						<br/>				
+						<div id="contacts-box" class="body-input">
+							
+							<div id="selected-contacts">
+								<div id="add-recipient-btn" class="contact-block">
+									<img src="./add.svg">
+								</div>
+							</div>
+							
+							<div id="recipient-input-container">
+								<input type="email" id="recipient-input" placeholder="Type in a valid email" required>
+								<div id="add-btn" class="unselectable">Add</div>
+							</div>
+						
+						</div>						
 
 						<label for="subject">Subject</label>
 						<br/>
-						<input type="text" id="subject" class="body-input" placeholder="You can add a subject">
+						<input type="text" id="subject" class="body-input" placeholder="You can add a subject" maxlength="100" required>
 						<br/>
 						
 						<label for="message">Message</label>
 						<br/>
-						<input type="text" id="message" class="body-input" placeholder="Leave your message here">
+						<textarea rows="5" id="message" class="body-input" placeholder="Leave your message here" required></textarea>
 						<br/>
+
 					</div>
 
-					<div class="form-footer">
-						<input type="checkbox" id="save">
-						<label for="save">Save a copy</label>
+					<div class="form-footer clear-fix">
+						<div id="save-container">
+							<div>
+								<input type="checkbox" id="save">
+								<label for="save" class="unselectable"><span></span>Save a copy</label>
+							</div>
+						</div>
 
-						<input type="button" id="send-btn" class="btn" value="Send Mail">
-						<!-- clear floats -->
-						<div class="clear"></div>
+						<button id="send-btn" class="btn">
+							<div>
+								<img src="./play3.svg">
+								Send Mail
+							</div>
+						</button>
 					</div>
 				</form>
 			</div>
+
+
+			<div id="profile-widget-container">
+				<div id="profile-header">
+					<div id="profile-pic"></div>
+					<div id="user-info">
+						<h1 id="first-name"></h1>
+						<h1 id="last-name"></h1>
+						<h2 id="followers"> <span> followers</span></h2>
+					</div>
+				</div>
+				<div id="profile-body">
+					<ul id="dimension-list">
+						<li>
+							<span>Edit User</span>
+							<span><img src=""></span>
+						</li>
+
+						<li>
+							<span>Web statistics</span>
+							<span><img src=""></span>				
+						</li>
+						
+						<li>
+							<span>Upload settings</span>
+							<span><img src=""></span>					
+						</li>
+						
+						<li>
+							<span>Events</span>
+							<span><img src=""></span>					
+						</li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 	</body>
+	
 </html>

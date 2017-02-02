@@ -1,19 +1,18 @@
 body, #root {
 	background-color: rgb(198,148,115);
 	height: 100%;
-	width: 100%;
-}
-
-#test {
-	color: blue;
 }
 
 .form-widget-container {
 	background-color: rgb(255, 255, 255);
 	border-radius: 3px;
-	font-family: 'Quicksand', sans-serif;
+	font: 12px 'Quicksand', sans-serif;		
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-	width: 250px;
+	width: 100%;
+
+	-webkit-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;		
 }
 
 .form-body {
@@ -21,18 +20,192 @@ body, #root {
 }
 
 .form-footer {
-	padding: 15px 20px 20px 15px;
-	background-color: rgb(248, 243, 240);
+	padding: 15px 20px 15px 20px;
+	background-color: #f8f3f0;
 	border-radius: 0 0 3px 3px;	
 }
 
+#recipient-input {
+	height: 0;
+	padding: 0;
+	border: 0 solid white;
+	-webkit-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: inline;
+
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;	
+}
+
+#recipient-input:invalid + #add-btn {
+	cursor: not-allowed;
+	background-color: #e0e0e0;
+	color: #7a7a7a;
+	pointer-events: none;
+}
+
+#add-btn {
+	display: inline-block;
+	height: 0;
+	padding: 0 7px 0 7px;
+	margin-left: 5px;
+	border-radius: 3px;
+	border: none;
+	color: #fff;
+	background-color:green;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	cursor: pointer;
+	font-size: 0;
+
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;	
+}
+
+#contacts-box.opened #add-btn {
+	height: 30px;
+	font-size: 10px;
+}
+
+#contacts-box.opened #recipient-input {
+	height: auto;
+	border: 0.5px solid #a8a8a8;
+	padding: 8px;
+	margin: 5px 0 5px 0;
+	border-radius: 3px;
+	flex-grow: 1;
+}
+
+#add-recipient-btn {
+	width: 30px;
+	background-color: #eae2d7;
+	border: none;
+	position: relative;
+	overflow: hidden;
+
+	-webkit-transition: background-color 0.3s, box-shadow 0.3s;
+	-moz-transition: background-color 0.3s, box-shadow 0.3s;
+	-ms-transition: background-color 0.3s, box-shadow 0.3s;
+	-o-transition: background-color 0.3s, box-shadow 0.3s;	
+}
+
+#recipient-input-container {
+	display: flex;
+	align-items: center;
+}
+
+#add-recipient-btn img {
+	width: 27px;
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition:all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;	
+}
+
+#contacts-box.opened #add-recipient-btn img {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#add-recipient-btn:hover, 
+#add-recipient-btn:active, 
+#add-recipient-btn:focus,
+#add-recipient-btn:visited {
+	background-color: #2ef48b;
+	outline: none;
+}
+
+#contacts-box.opened #add-recipient-btn:hover, 
+#contacts-box.opened #add-recipient-btn:active, 
+#contacts-box.opened #add-recipient-btn:focus,
+#contacts-box.opened #add-recipient-btn:visited {
+	background-color: #f44b42;
+}
+
+.contact-block {
+	border-radius: 2px;
+	display: inline-block;
+	height: 30px;
+	color: #fff;
+	margin: 0 3px 3px 0;
+	display: flex;
+	align-items: center;
+}
+
+.contact-block:not(#add-recipient-btn) {
+	padding: 0 7px 0 7px;
+}
+
+.contact-block.friend {
+	background-color: #6a8cc1;
+}
+
+.contact-block.work {
+	background-color: #62af89;
+}
+
+.body-input,
+#recipient-input {
+	font: 10px 'Quicksand', sans-serif;		
+
+	-webkit-box-sizing: border-box;	
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;	
+}
+
 .body-input {
+	width: 100%;	
 	margin-bottom: 10px;
-	padding: 5px;
+	padding: 8px;
+	margin-top: 5px;
 	border: 1px solid #e5d4c2;
 	border-radius: 0.2em;
 	-webkit-border-radius: 0.2em;
-	-moz-border-radius: 0.2em;	
+	-moz-border-radius: 0.2em;
+	resize: none;
+
+}
+
+/* Remove placeholder text upon focus */
+.body-input:focus::-webkit-input-placeholder,
+#recipient-input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+.body-input:focus::-moz-input-placeholder,
+#recipient-input:focus::-moz-input-placeholder {
+	color: transparent;
+}
+
+.body-input:focus,
+#contacts-box.opened #recipient-input:focus {
+	outline: none;
+	box-shadow: 0 0 5px #5dcfef;
+	border: 1px solid #5dcfef;	
+}
+
+.form-body > input, .form-body > textarea {
+  -webkit-transition: outline 0.20s ease-in, box-shadow 0.20s ease-in-out;
+  -moz-transition: outline 0.20s ease-in, box-shadow 0.20s ease-in-out;
+  -ms-transition: outline 0.20s ease-in, box-shadow 0.20s ease-in-out;
+  -o-transition: outline 0.20s ease-in, box-shadow 0.20s ease-in-out;
+
+  outline: none;
 }
 
 #send-btn {
@@ -53,8 +226,6 @@ body, #root {
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-
-
 }
 
 #send-btn:hover {
@@ -78,6 +249,63 @@ body, #root {
 	-moz-box-shadow: none;
 }
 
+#send-btn > div {
+	display: flex;
+	align-items: center;
+	padding: 0 5px 0 5px;
+}
+
+#send-btn > div > img {
+	margin-right: 7px;
+	height: 15px;
+}
+
+#save-container {
+	float: left;
+	display: table;
+	overflow: hidden;
+	height: 34px;
+}
+
+#save-container > div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#save-container input[type="checkbox"] {
+	display: none;
+}
+
+#save-container input[type="checkbox"] + label span {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border: 1px #efe3dc solid;
+	border-radius: 1px;
+	margin: -3px 7px 0 0;
+	background-color: #fff;	
+	background-size: 8px 8px;
+	vertical-align: middle;
+}
+
+#save-container input[type="checkbox"]:checked + label span {
+	background-image: url("checkmark.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#save-container input[type="checkbox"] + label:active span {
+	background-color: #efefef;
+}
+
+.clear-fix:after {
+	visibility: hidden;
+	display: block;
+	content: " ";
+	height: 0;
+	clear: both;
+}
+
 .btn {
 	font: 12px 'Quicksand', sans-serif;	
 	padding: 0.75em;
@@ -94,6 +322,14 @@ body, #root {
 	vertical-align: middle;
 }
 
-.clear {
-	clear: both;
+#selected-contacts {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.unselectable {
+	-webkit-user-select: none;	
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
