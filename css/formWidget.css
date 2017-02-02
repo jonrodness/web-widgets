@@ -311,6 +311,7 @@ body,
 #send-btn > div > img {
 	margin-right: 7px;
 	height: 15px;
+	background-image: url("../images/play3.png");
 	background-size: contain;
 }
 
@@ -343,7 +344,7 @@ body,
 }
 
 #save-container input[type="checkbox"]:checked + label span {
-	background-image: url("images/checkmark.png");
+	background-image: url("../images/checkmark.png");
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -369,7 +370,7 @@ body,
 }
 
 .play {
-	background-image: url("images/play.svg");
+	background-image: url("play.svg");
 	display: inline-block;
 	width: 0;
 	height: 0;

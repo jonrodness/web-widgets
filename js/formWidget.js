@@ -26,7 +26,7 @@
 		var contactText = document.createTextNode(contact.email);
 		contactElement.appendChild(contactText);
 		
-		contactsBox.insertBefore(contactElement, contactsBox.childNodes[0]);		
+		contactsBox.insertBefore(contactElement, contactsBox.childNodes[0]);
 	}
 
 	/**
@@ -56,6 +56,7 @@
 
 			insertContact(newContact);
 			recipientInput.value = "";
+			recipientInput.classList.add("empty");			
 			recipientInput.focus();
 		}
 	}		
@@ -73,7 +74,26 @@
 			classList.remove("opened");						
 		} else {
 			classList.add("opened");
-			document.getElementById("recipient-input").focus();
+			var recipientInput = document.getElementById("recipient-input");
+			recipientInput.focus();
+			if (recipientInput.value.length === 0) {
+				recipientInput.classList.add("empty");
+			}
+		}
+	}
+
+	/**
+	 * Event handler for typing in recipient input.
+	 *
+	 * @param {object} e The fired event.
+	 * @return null
+	 */
+	function onRecipientInput(e) {
+		var recipientInput = e.target;
+		if (recipientInput.value.length === 0) {
+			recipientInput.classList.add("empty");
+		} else {
+			recipientInput.classList.remove("empty");
 		}
 	}
 
@@ -95,6 +115,13 @@
 			addBtn.addEventListener("click", onAddContact);					
 		} else {
 			addBtn.attachEvent("click", onAddContact);				
+		}
+
+		var recipientInput = document.getElementById("recipient-input");
+		if (recipientInput.addEventListener) {
+			recipientInput.addEventListener("input", onRecipientInput);					
+		} else {
+			recipientInput.attachEvent("input", onRecipientInput);				
 		}		
 	}
 

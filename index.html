@@ -3,14 +3,10 @@
 	<head>
 		<meta charset="UTF-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Widget Tester</title>
+		<title>Widgets</title>
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
-		<script type="text/javascript" src="./formWidget.js"></script>
-		<script type="text/javascript" src="./profileWidget.js"></script>
-		<script src="https://use.fontawesome.com/b33d21aaf0.js"></script>
-		<link type="text/css" href="./formWidget.css" rel="stylesheet">
-		<link type="text/css" href="./profileWidget.css" rel="stylesheet">
-
+		<link type="text/css" href="css/formWidget.css" rel="stylesheet">
+		<link type="text/css" href="css/profileWidget.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -22,31 +18,31 @@
 					<div class="form-body">
 
 						<label>Contacts</label>
-						<br/>
+						<br />
 						<div id="contacts-box" class="body-input">
 							
 							<div id="selected-contacts">
-								<div id="add-recipient-btn" class="contact-block">
-									<img src="./add.svg">
+								<div id="add-recipient-btn" class="contact-block" title="Toggle contact input">
+									<img src="images/add.svg">
 								</div>
 							</div>
 							
 							<div id="recipient-input-container">
-								<input type="email" id="recipient-input" placeholder="Type in a valid email" required>
+								<input type="email" id="recipient-input" placeholder="Type in a valid email">
 								<div id="add-btn" class="unselectable">Add</div>
 							</div>
 						
 						</div>						
 
 						<label for="subject">Subject</label>
-						<br/>
-						<input type="text" id="subject" class="body-input" placeholder="You can add a subject" maxlength="100" required>
-						<br/>
+						<br />
+						<input type="text" id="subject" class="body-input" placeholder="You can add a subject" maxlength="100" required="required">
+						<br />
 						
 						<label for="message">Message</label>
-						<br/>
-						<textarea rows="5" id="message" class="body-input" placeholder="Leave your message here" required></textarea>
-						<br/>
+						<br />
+						<textarea rows="5" id="message" class="body-input" placeholder="Leave your message here" required="required"></textarea>
+						<br />
 
 					</div>
 
@@ -60,7 +56,7 @@
 
 						<button id="send-btn" class="btn">
 							<div>
-								<img src="./play3.svg">
+								<img src="images/play3.png">
 								Send Mail
 							</div>
 						</button>
@@ -119,5 +115,8 @@
 			</div>
 
 		</div>
+		<script type="text/javascript" src="js/formWidget.js"></script>
+		<script type="text/javascript" src="js/profileWidget.js"></script>
+		<script src="https://use.fontawesome.com/b33d21aaf0.js"></script>		
 	</body>
 </html>

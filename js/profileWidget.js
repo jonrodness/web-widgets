@@ -13,16 +13,6 @@
 	 * @return null
 	 */
 	function initProfile() {
-
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("demo").innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("GET", "ajax_info.txt", true);
-		xhttp.send();
-
 		var firstNameElement = document.getElementById("first-name");		
 		var firstNameText = document.createTextNode(profile.firstName);
 		firstNameElement.appendChild(firstNameText);
@@ -36,7 +26,7 @@
 		followersElement.insertBefore(followersText, followersElement.children[0]);
 
 		var profilePicContainer = document.getElementById("profile-pic-container");
-		profilePicContainer.style.backgroundImage = "url('" + profile.picUrl + "')";
+		profilePicContainer.style.backgroundImage = "url('images/" + profile.picUrl + "')";
 	}
 
 	/**
